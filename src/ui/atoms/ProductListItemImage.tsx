@@ -8,7 +8,7 @@ type ProductListItemImageProps = {
 
 export const ProductListItemImage = ({ src, alt }: ProductListItemImageProps) => {
 	return (
-		<Link href="#" className="aspect-auto">
+		<Link href="/" className="aspect-auto">
 			<Image src={src} alt={alt} width={600} height={600} priority />
 		</Link>
 	);
