@@ -5,19 +5,19 @@ type ProductListItemProps = {
 	product: {
 		image: string;
 		name: string;
-		description: string;
+		category: string;
 		price: number;
 	};
 };
 
 export const ProductListItem = ({
-	product: { name, description, image, price },
+	product: { name, category, image, price },
 }: ProductListItemProps) => {
 	return (
 		<li className="transition-shadow hover:shadow-lg">
 			<article className="flex flex-col ">
 				<ProductListItemImage src={image} alt={name} />
-				<ProductListItemDescription name={name} description={description} price={price} />
+				<ProductListItemDescription name={name} category={category} price={price} />
 			</article>
 		</li>
 	);

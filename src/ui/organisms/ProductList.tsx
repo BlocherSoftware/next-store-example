@@ -4,7 +4,7 @@ type ProductListProps = {
 	products: {
 		image: string;
 		name: string;
-		description: string;
+		category: string;
 		price: number;
 	}[];
 };

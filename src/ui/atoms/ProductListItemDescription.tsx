@@ -3,13 +3,13 @@ import { priceFormatter } from "@/utils";
 
 type ProductListItemDescriptionProps = {
 	name: string;
-	description: string;
+	category: string;
 	price: number;
 };
 
 export const ProductListItemDescription = ({
 	name,
-	description,
+	category,
 	price,
 }: ProductListItemDescriptionProps) => {
 	return (
@@ -17,7 +17,7 @@ export const ProductListItemDescription = ({
 			<h3 className="mb-1 text-lg font-semibold">
 				<Link href="/">{name}</Link>
 			</h3>
-			<p className="mb-2 text-sm">{description}</p>
+			<p className="mb-2 text-sm text-slate-400">Category: {category}</p>
 			<p className="text-xl">{priceFormatter(price)}</p>
 		</div>
 	);
