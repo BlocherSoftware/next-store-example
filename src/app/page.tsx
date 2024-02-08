@@ -4,25 +4,25 @@ const products = [
 	{
 		image: "/product_1.jpg",
 		name: "Ocean phone case",
-		description: "The best phone case in the world",
+		category: "Iphone",
 		price: 100,
 	},
 	{
 		image: "/product_2.jpg",
 		name: "Electro phone case",
-		description: "The best phone case in the world",
+		category: "Samsung",
 		price: 50,
 	},
 	{
 		image: "/product_3.jpg",
 		name: "Colorful phone case",
-		description: "The best phone case in the world",
+		category: "Iphone",
 		price: 150,
 	},
 	{
 		image: "/product_4.jpg",
 		name: "Lazur phone case",
-		description: "The best phone case in the world",
+		category: "Iphone",
 		price: 20,
 	},
 ];
