@@ -4,3 +4,6 @@ export const priceFormatter = (price: number) => {
 		currency: "USD",
 	}).format(price);
 };
+
+export const pageNumberToPageNumberArray = (pages: number) =>
+	new Array<number>(pages).fill(0).map((_, index) => index + 1);
