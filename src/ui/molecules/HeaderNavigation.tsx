@@ -11,7 +11,11 @@ export const HeaderNavigation = () => {
 						</ActiveLink>
 					</li>
 					<li className="pr-4">
-						<ActiveLink href="/products/1" activeClassName="text-decoration-line: underline">
+						<ActiveLink
+							href="/products"
+							activeClassName="text-decoration-line: underline"
+							exact={false}
+						>
 							All
 						</ActiveLink>
 					</li>
