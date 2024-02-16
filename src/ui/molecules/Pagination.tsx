@@ -14,11 +14,7 @@ export const Pagination = async ({ activePage }: { activePage: number }) => {
 
 	const addPageLink = (page: number) => (
 		<li key={`pagination-page-${page}`} className="mr-2">
-			<ActiveLink
-				href={`/products/${page}`}
-				activeClassName="text-decoration-line: underline"
-				aria-label="pagination"
-			>
+			<ActiveLink href={`/products/${page}`} activeClassName="text-decoration-line: underline">
 				{page}
 			</ActiveLink>
 		</li>
@@ -48,5 +44,9 @@ export const Pagination = async ({ activePage }: { activePage: number }) => {
 		return pagination;
 	};
 
-	return <ul className="mt-5 flex justify-center">{generatePaginationList(pages)}</ul>;
+	return (
+		<ul className="mt-5 flex justify-center" aria-label="pagination">
+			{generatePaginationList(pages)}
+		</ul>
+	);
 };
