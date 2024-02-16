@@ -1,21 +1,10 @@
 "use client";
 
 import Link from "next/link";
-// import { type ReactNode } from "react";
 import { usePathname } from "next/navigation";
 import { clsx } from "clsx";
 import type { Route } from "next";
 import { type ReactNode } from "react";
-
-enum AriaCurrent {
-	TRUE = "true",
-	FALSE = "false",
-	PAGE = "page",
-	STEP = "step",
-	Location = "location",
-	DATE = "date",
-	TIME = "time",
-}
 
 export function ActiveLink<T extends string>({
 	href,
@@ -32,13 +21,13 @@ export function ActiveLink<T extends string>({
 	children: ReactNode;
 }) {
 	const path = usePathname();
-	const isActive = exact ? path === href : path.includes(href.toString());
+	const isActive = exact ? path === href : path.startsWith(href as string);
 
 	return (
 		<Link
 			href={href}
 			className={clsx(isActive && activeClassName, className)}
-			aria-current={isActive ? (exact ? AriaCurrent.PAGE : AriaCurrent.TRUE) : AriaCurrent.FALSE}
+			aria-current={isActive ? "page" : undefined}
 			{...rest}
 		>
 			{children}
