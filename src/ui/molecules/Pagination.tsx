@@ -14,7 +14,11 @@ export const Pagination = async ({ activePage }: { activePage: number }) => {
 
 	const addPageLink = (page: number) => (
 		<li key={`pagination-page-${page}`} className="mr-2">
-			<ActiveLink href={`/products/${page}`} activeClassName="text-decoration-line: underline">
+			<ActiveLink
+				href={`/products/${page}`}
+				activeClassName="text-decoration-line: underline"
+				aria-label="pagination"
+			>
 				{page}
 			</ActiveLink>
 		</li>
