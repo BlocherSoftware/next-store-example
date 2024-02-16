@@ -12,7 +12,7 @@ export const HeaderNavigation = () => {
 					</li>
 					<li className="pr-4">
 						<ActiveLink href="/products/1" activeClassName="text-decoration-line: underline">
-							Products
+							All
 						</ActiveLink>
 					</li>
 				</ul>
