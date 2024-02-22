@@ -5,6 +5,25 @@ import { pageNumberToPageNumberArray } from "@/utils/utils";
 import { getCollectionsListBySlug } from "@/api/collections";
 import { Pagination } from "@/ui/molecules/Pagination";
 
+export const generateMetadata = async ({
+	params: { collectionName },
+}: {
+	params: { collectionName: string };
+}) => {
+	const collections = await getCollectionsListBySlug(collectionName);
+
+	if (!collections) return { title: "Category" };
+
+	return {
+		title: collections.name,
+		description: collections.description,
+		openGraph: {
+			title: collections.name,
+			description: collections.description,
+		},
+	};
+};
+
 export const generateStaticParams = async () => {
 	const pages = 1;
 	const pagesNumberArray = pageNumberToPageNumberArray(pages);

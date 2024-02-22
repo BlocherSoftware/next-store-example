@@ -5,6 +5,25 @@ import { pageNumberToPageNumberArray } from "@/utils/utils";
 import { getCategoryBySlug } from "@/api/categories";
 import { Pagination } from "@/ui/molecules/Pagination";
 
+export const generateMetadata = async ({
+	params: { categoryName },
+}: {
+	params: { categoryName: string };
+}) => {
+	const category = await getCategoryBySlug(categoryName);
+
+	if (!category) return { title: "Category" };
+
+	return {
+		title: category.name,
+		description: category.description,
+		openGraph: {
+			title: category.name,
+			description: category.description,
+		},
+	};
+};
+
 export const generateStaticParams = async () => {
 	const pages = 1;
 	const pagesNumberArray = pageNumberToPageNumberArray(pages);
