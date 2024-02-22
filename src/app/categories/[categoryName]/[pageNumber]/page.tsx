@@ -16,13 +16,13 @@ export default async function CategoryPaginationPage({
 }: {
 	params: { categoryName: string; pageNumber: string };
 }) {
-	const products = await getCategoryBySlug(categoryName);
-	if (!products) throw notFound();
+	const categoryData = await getCategoryBySlug(categoryName);
+	if (!categoryData) throw notFound();
 	return (
 		<main className="flex min-h-screen flex-col items-center justify-between p-5">
 			<div className="container mx-auto">
-				<h1 className="mb-5 text-4xl font-bold">Products</h1>
-				<ProductList products={products} />
+				<h1 className="mb-5 text-4xl font-bold">{categoryData.name}</h1>
+				<ProductList products={categoryData.products} />
 				<Suspense fallback="Loading...">
 					<Pagination activePage={Number(pageNumber)} totalProducts={1} />
 				</Suspense>

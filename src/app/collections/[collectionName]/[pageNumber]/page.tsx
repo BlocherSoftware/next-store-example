@@ -12,17 +12,17 @@ export const generateStaticParams = async () => {
 };
 
 export default async function CollectionPaginationPage({
-	params: { categoryName, pageNumber },
+	params: { collectionName, pageNumber },
 }: {
-	params: { categoryName: string; pageNumber: string };
+	params: { collectionName: string; pageNumber: string };
 }) {
-	const products = await getCollectionsListBySlug(categoryName);
-	if (!products) throw notFound();
+	const collectionsData = await getCollectionsListBySlug(collectionName);
+	if (!collectionsData) throw notFound();
 	return (
 		<main className="flex min-h-screen flex-col items-center justify-between p-5">
 			<div className="container mx-auto">
-				<h1 className="mb-5 text-4xl font-bold">Products</h1>
-				<ProductList products={products} />
+				<h1 className="mb-5 text-4xl font-bold">{collectionsData.name}</h1>
+				<ProductList products={collectionsData.products} />
 				<Suspense fallback="Loading...">
 					<Pagination activePage={Number(pageNumber)} totalProducts={1} />
 				</Suspense>

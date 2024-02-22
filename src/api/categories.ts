@@ -13,5 +13,5 @@ export const getCategoryBySlug = async (slug: string) => {
 		query: CategoriesBySlugDocument,
 		variables: { slug },
 	});
-	return data.category?.products;
+	return data.category;
 };

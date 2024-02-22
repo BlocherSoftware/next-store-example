@@ -13,5 +13,5 @@ export const getCollectionsListBySlug = async (slug: string) => {
 		query: CollectionBySlugDocument,
 		variables: { slug },
 	});
-	return data.collection?.products;
+	return data.collection;
 };
