@@ -1,0 +1,10 @@
+query ProductSearch($search: String!) {
+	products(search: $search) {
+		meta {
+			total
+		}
+		data {
+			...ProductListItem
+		}
+	}
+}

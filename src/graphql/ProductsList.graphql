@@ -1,0 +1,11 @@
+query ProductList($take: Int!, $skip: Int) {
+	products(take: $take, skip: $skip) {
+		meta {
+			count
+			total
+		}
+		data {
+			...ProductListItem
+		}
+	}
+}

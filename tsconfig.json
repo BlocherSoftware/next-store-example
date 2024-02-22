@@ -23,6 +23,13 @@
 			"@/*": ["./src/*"]
 		}
 	},
-	"include": [".next/types/**/*.ts", "next-env.d.ts", "**/*.ts", "**/*.tsx", "tailwind.config.ts"],
+	"include": [
+		".next/types/**/*.ts",
+		"next-env.d.ts",
+		"**/*.ts",
+		"**/*.tsx",
+		"tailwind.config.ts",
+		".graphqlrc.ts"
+	],
 	"exclude": ["node_modules"]
 }

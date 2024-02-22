@@ -1,0 +1,25 @@
+fragment ProductDetails on Product {
+	description
+	images {
+		url
+		alt
+	}
+	name
+	price
+	rating
+	reviews {
+		author
+		createdAt
+		description
+		email
+		id
+		product {
+			name
+		}
+		rating
+		title
+	}
+	categories {
+		name
+	}
+}

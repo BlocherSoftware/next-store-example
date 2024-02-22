@@ -1,0 +1,7 @@
+query ProductListRelated {
+	products(take: 4, skip: 1) {
+		data {
+			...ProductListItem
+		}
+	}
+}
