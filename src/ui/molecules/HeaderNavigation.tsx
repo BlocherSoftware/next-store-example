@@ -12,16 +12,12 @@ export const HeaderNavigation = async () => {
 			<div className="container mx-auto flex items-center">
 				<ul className="flex w-full items-center">
 					<li className="py-4 pr-4">
-						<ActiveLink href="/" activeClassName="text-decoration-line: underline">
+						<ActiveLink href="/" activeClassName="border-b-2 border-blue-500">
 							Home
 						</ActiveLink>
 					</li>
 					<li className="py-4 pr-4">
-						<ActiveLink
-							href="/products"
-							activeClassName="text-decoration-line: underline"
-							exact={false}
-						>
+						<ActiveLink href="/products" activeClassName="border-b-2 border-blue-500" exact={false}>
 							All
 						</ActiveLink>
 					</li>
@@ -30,7 +26,7 @@ export const HeaderNavigation = async () => {
 						<li key={`menu-category-${category.id}`} className="py-4 pr-4">
 							<ActiveLink
 								href={`/collections/${category.slug}/1`}
-								activeClassName="text-decoration-line: underline"
+								activeClassName="border-b-2 border-blue-500"
 								className="text-nowrap"
 							>
 								{category.name}
@@ -41,7 +37,7 @@ export const HeaderNavigation = async () => {
 						<li key={`menu-category-${category.id}`} className="py-4 pr-4">
 							<ActiveLink
 								href={`/categories/${category.slug}/1`}
-								activeClassName="text-decoration-line: underline"
+								activeClassName="border-b-2 border-blue-500"
 							>
 								{category.name}
 							</ActiveLink>
