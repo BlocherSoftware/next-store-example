@@ -34,6 +34,7 @@ export const Serachbar = () => {
 				className="s w-full border-b-2 border-gray-700 p-2"
 				onChange={handleSearch}
 				value={search}
+				role="searchbox"
 			/>
 			<Search className="absolute right-0 top-2" />
 		</div>
