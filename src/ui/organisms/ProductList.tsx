@@ -1,14 +1,11 @@
-import { Suspense } from "react";
-import { Pagination } from "@/ui/molecules/Pagination";
 import { ProductListItem } from "@/ui/molecules/ProductListItem";
-import { type Productitem } from "@/utils/types";
+import { type ProductListItemFragment } from "@/gql/graphql";
 
 type ProductListProps = {
-	products: Productitem[];
-	activePage: number;
+	products: ProductListItemFragment[];
 };
 
-export const ProductList = ({ products, activePage }: ProductListProps) => {
+export const ProductList = ({ products }: ProductListProps) => {
 	return (
 		<>
 			<ul
@@ -19,9 +16,6 @@ export const ProductList = ({ products, activePage }: ProductListProps) => {
 					<ProductListItem key={product.name} product={product} />
 				))}
 			</ul>
-			<Suspense fallback="Loading...">
-				<Pagination activePage={activePage} />
-			</Suspense>
 		</>
 	);
 };

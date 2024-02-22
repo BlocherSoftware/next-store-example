@@ -1,0 +1,9 @@
+query CategoryList {
+	categories {
+		data {
+			id
+			name
+			slug
+		}
+	}
+}

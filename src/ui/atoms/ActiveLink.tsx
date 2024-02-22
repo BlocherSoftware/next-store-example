@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link, { type LinkProps } from "next/link";
 import { usePathname } from "next/navigation";
 import { clsx } from "clsx";
 import type { Route } from "next";
@@ -15,11 +15,11 @@ export function ActiveLink<T extends string>({
 	...rest
 }: {
 	href: Route<T> | URL;
-	activeClassName: string;
+	activeClassName?: string;
 	className?: string;
 	exact?: boolean;
 	children: ReactNode;
-}) {
+} & Omit<LinkProps<T>, "href">) {
 	const path = usePathname();
 	const isActive = exact ? path === href : path.startsWith(href as string);
 

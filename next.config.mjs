@@ -4,19 +4,20 @@ const nextConfig = {
 		remotePatterns: [
 			{
 				protocol: "https",
-				hostname: "naszsklep-api.vercel.app",
-				port: "",
-				pathname: "/images/**",
+				hostname: "static-ourstore.hyperfunctor.com",
 			},
 		],
 	},
 	experimental: {
-		typedRoutes: true,
+		typedRoutes: false,
 	},
 	logging: {
 		fetches: {
 			fullUrl: true,
 		},
+	},
+	env: {
+		GRAPHQL_URL: process.env.GRAPHQL_URL,
 	},
 };
 

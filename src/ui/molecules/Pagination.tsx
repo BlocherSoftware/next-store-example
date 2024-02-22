@@ -1,10 +1,14 @@
-import { getProductListAll } from "@/api/products";
 import { ActiveLink } from "@/ui/atoms/ActiveLink";
 import { PRODUCT_PER_PAGE } from "@/utils/constants";
 
-export const Pagination = async ({ activePage }: { activePage: number }) => {
-	const data = await getProductListAll();
-	const pages = Math.ceil(data.length / PRODUCT_PER_PAGE);
+export const Pagination = async ({
+	activePage,
+	totalProducts,
+}: {
+	activePage: number;
+	totalProducts: number;
+}) => {
+	const pages = Math.ceil(totalProducts / PRODUCT_PER_PAGE);
 
 	const addDots = (id: string) => (
 		<li key={`pagination-page-${id}`} className="mr-2">
@@ -22,6 +26,12 @@ export const Pagination = async ({ activePage }: { activePage: number }) => {
 
 	const generatePaginationList = (pages: number) => {
 		const pagination = [];
+		if (pages < 3) {
+			for (let i = 1; i <= pages; i++) {
+				if (i > 0) pagination.push(addPageLink(i));
+			}
+			return pagination;
+		}
 
 		if (activePage < 3) {
 			for (let i = activePage - 1; i <= 3; i++) {
