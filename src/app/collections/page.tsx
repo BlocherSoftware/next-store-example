@@ -1,4 +1,5 @@
-export default function Collection() {
+export default function Collection(props) {
+	console.log(props);
 	return (
 		<main className="flex min-h-screen flex-col items-center justify-between p-5">
 			<div className="container mx-auto">

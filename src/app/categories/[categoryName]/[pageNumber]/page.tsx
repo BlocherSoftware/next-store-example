@@ -24,7 +24,7 @@ export default async function CategoryPaginationPage({
 				<h1 className="mb-5 text-4xl font-bold">Products</h1>
 				<ProductList products={products} />
 				<Suspense fallback="Loading...">
-					<Pagination activePage={Number(pageNumber)} totalProducts={0} />
+					<Pagination activePage={Number(pageNumber)} totalProducts={1} />
 				</Suspense>
 			</div>
 		</main>

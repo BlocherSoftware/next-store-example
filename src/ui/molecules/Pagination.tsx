@@ -1,3 +1,5 @@
+"use client";
+import { usePathname } from "next/navigation";
 import { ActiveLink } from "@/ui/atoms/ActiveLink";
 import { PRODUCT_PER_PAGE } from "@/utils/constants";
 
@@ -8,6 +10,7 @@ export const Pagination = async ({
 	activePage: number;
 	totalProducts: number;
 }) => {
+	const pathname = usePathname();
 	const pages = Math.ceil(totalProducts / PRODUCT_PER_PAGE);
 
 	const addDots = (id: string) => (
@@ -16,13 +19,20 @@ export const Pagination = async ({
 		</li>
 	);
 
-	const addPageLink = (page: number) => (
-		<li key={`pagination-page-${page}`} className="mr-2">
-			<ActiveLink href={`/products/${page}`} activeClassName="text-decoration-line: underline">
-				{page}
-			</ActiveLink>
-		</li>
-	);
+	const addPageLink = (page: number) => {
+		const pathnameArr = pathname.split("/");
+		pathnameArr.fill(String(page), -1).join("/");
+		return (
+			<li key={`pagination-page-${page}`} className="mr-2">
+				<ActiveLink
+					href={`${pathnameArr.fill(String(page), -1).join("/")}`}
+					activeClassName="text-decoration-line: underline"
+				>
+					{page}
+				</ActiveLink>
+			</li>
+		);
+	};
 
 	const generatePaginationList = (pages: number) => {
 		const pagination = [];
