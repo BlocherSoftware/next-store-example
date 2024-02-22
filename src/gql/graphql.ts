@@ -277,7 +277,7 @@ export type CategoriesBySlugQueryVariables = Exact<{
 }>;
 
 
-export type CategoriesBySlugQuery = { category?: { name: string, products: Array<{ slug: string, name: string, price: number, images: Array<{ alt: string, url: string }>, categories: Array<{ name: string }> }> } | null };
+export type CategoriesBySlugQuery = { category?: { name: string, description: string, products: Array<{ slug: string, name: string, price: number, images: Array<{ alt: string, url: string }>, categories: Array<{ name: string }> }> } | null };
 
 export type CategoryListQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -294,7 +294,7 @@ export type CollectionBySlugQueryVariables = Exact<{
 }>;
 
 
-export type CollectionBySlugQuery = { collection?: { name: string, products: Array<{ slug: string, name: string, price: number, images: Array<{ alt: string, url: string }>, categories: Array<{ name: string }> }> } | null };
+export type CollectionBySlugQuery = { collection?: { name: string, description: string, products: Array<{ slug: string, name: string, price: number, images: Array<{ alt: string, url: string }>, categories: Array<{ name: string }> }> } | null };
 
 export type ProductBySlugQueryVariables = Exact<{
   slug: Scalars['String']['input'];
@@ -386,6 +386,7 @@ export const CategoriesBySlugDocument = new TypedDocumentString(`
     query CategoriesBySlug($slug: String!) {
   category(slug: $slug) {
     name
+    description
     products {
       ...ProductListItem
     }
@@ -429,6 +430,7 @@ export const CollectionBySlugDocument = new TypedDocumentString(`
     query CollectionBySlug($slug: String!) {
   collection(slug: $slug) {
     name
+    description
     products {
       ...ProductListItem
     }

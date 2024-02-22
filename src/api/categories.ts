@@ -13,5 +13,8 @@ export const getCategoryBySlug = async (slug: string) => {
 		query: CategoriesBySlugDocument,
 		variables: { slug },
 	});
+	if (!data) {
+		throw new Error("Failed to fetch category");
+	}
 	return data.category;
 };
