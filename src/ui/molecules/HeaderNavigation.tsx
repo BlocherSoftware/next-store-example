@@ -26,16 +26,6 @@ export const HeaderNavigation = async () => {
 						</ActiveLink>
 					</li>
 
-					{dataCategories.map((category) => (
-						<li key={`menu-category-${category.id}`} className="py-4 pr-4">
-							<ActiveLink
-								href={`/category/${category.slug}`}
-								activeClassName="text-decoration-line: underline"
-							>
-								{category.name}
-							</ActiveLink>
-						</li>
-					))}
 					<li className="group relative cursor-pointer py-4 pr-4">
 						<ActiveLink
 							href="/collection"
@@ -59,6 +49,16 @@ export const HeaderNavigation = async () => {
 							))}
 						</ul>
 					</li>
+					{dataCategories.map((category) => (
+						<li key={`menu-category-${category.id}`} className="py-4 pr-4">
+							<ActiveLink
+								href={`/category/${category.slug}`}
+								activeClassName="text-decoration-line: underline"
+							>
+								{category.name}
+							</ActiveLink>
+						</li>
+					))}
 				</ul>
 				<Cart productCount={0} />
 			</div>
