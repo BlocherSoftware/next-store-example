@@ -26,27 +26,21 @@ export const HeaderNavigation = async () => {
 						</ActiveLink>
 					</li>
 
-					<li className="group relative cursor-pointer py-4 pr-4">
-						<span>collections</span>
-
-						<ul className="invisible absolute top-12 z-50 flex w-64 flex-col border-2 bg-gray-100 px-4 py-3 text-gray-800 group-hover:visible">
-							{dataCollections.map((category) => (
-								<li key={`menu-category-${category.id}`} className="p-1">
-									<ActiveLink
-										href={`/collections/${category.slug}/1`}
-										activeClassName="text-decoration-line: underline"
-										className="text-nowrap"
-									>
-										{category.name}
-									</ActiveLink>
-								</li>
-							))}
-						</ul>
-					</li>
+					{dataCollections.map((category) => (
+						<li key={`menu-category-${category.id}`} className="py-4 pr-4">
+							<ActiveLink
+								href={`/collections/${category.slug}/1`}
+								activeClassName="text-decoration-line: underline"
+								className="text-nowrap"
+							>
+								{category.name}
+							</ActiveLink>
+						</li>
+					))}
 					{dataCategories.map((category) => (
 						<li key={`menu-category-${category.id}`} className="py-4 pr-4">
 							<ActiveLink
-								href={`/categories/${category.slug}`}
+								href={`/categories/${category.slug}/1`}
 								activeClassName="text-decoration-line: underline"
 							>
 								{category.name}
