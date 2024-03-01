@@ -1,5 +1,5 @@
 "use client";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { ActiveLink } from "@/ui/atoms/ActiveLink";
 import { PRODUCT_PER_PAGE } from "@/utils/constants";
 
@@ -11,6 +11,7 @@ export const Pagination = async ({
 	totalProducts: number;
 }) => {
 	const pathname = usePathname();
+	const searchParams = useSearchParams();
 	const pages = Math.ceil(totalProducts / PRODUCT_PER_PAGE);
 
 	const addDots = (id: string) => (
@@ -25,7 +26,7 @@ export const Pagination = async ({
 		return (
 			<li key={`pagination-page-${page}`} className="mr-2">
 				<ActiveLink
-					href={`${pathnameArr.fill(String(page), -1).join("/")}`}
+					href={`${pathnameArr.fill(String(page), -1).join("/")}${searchParams.toString() ? `?${searchParams.toString()}` : ""}`}
 					activeClassName="text-decoration-line: underline"
 				>
 					{page}

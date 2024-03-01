@@ -4,12 +4,21 @@ import {
 	ProductBySlugDocument,
 	ProductListRelatedDocument,
 	ProductSearchDocument,
+	ReviewCreateDocument,
+	ReviewByProductSlugDocument,
+	type ProductSortBy,
+	type SortDirection,
 } from "@/gql/graphql";
 
-export const getProductList = async (limit: number, offset: number) => {
+export const getProductList = async (
+	limit: number,
+	offset: number,
+	orderBy?: ProductSortBy,
+	order?: SortDirection,
+) => {
 	const data = await ExecuteGraphQL({
 		query: ProductListDocument,
-		variables: { take: limit, skip: offset },
+		variables: { take: limit, skip: offset, orderBy, order },
 	});
 	return data.products;
 };
@@ -35,4 +44,37 @@ export const serachProducts = async (search: string) => {
 		variables: { search },
 	});
 	return data.products;
+};
+
+export const createReview = async ({
+	author,
+	description,
+	rating,
+	title,
+	email,
+	productId,
+}: {
+	author: string;
+	description: string;
+	email: string;
+	productId: string;
+	rating: number;
+	title: string;
+}) => {
+	const data = await ExecuteGraphQL({
+		query: ReviewCreateDocument,
+		variables: { author, description, email, productId, rating, title },
+	});
+	return data.reviewCreate;
+};
+
+export const ReviewByProductSlug = async (slug: string) => {
+	const data = await ExecuteGraphQL({
+		query: ReviewByProductSlugDocument,
+		variables: { slug },
+		next: {
+			tags: ["review"],
+		},
+	});
+	return data.product;
 };

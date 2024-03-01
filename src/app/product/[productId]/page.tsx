@@ -1,7 +1,9 @@
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { getProductBySlug } from "@/api/products";
 import { ProductDetails } from "@/ui/molecules/ProductDetails";
 import { ProductListRelated } from "@/ui/organisms/ProductListRelated";
+import { ProductReview } from "@/ui/organisms/ProductReview";
 
 type ProductPageProps = {
 	params: {
@@ -17,11 +19,6 @@ export const generateMetadata = async ({ params: { productId } }: ProductPagePro
 	return {
 		title: productData.name,
 		description: productData.description,
-		openGraph: {
-			title: productData.name,
-			description: productData.description,
-			images: [{ url: productData.images[0].url }],
-		},
 	};
 };
 
@@ -37,6 +34,9 @@ export default async function ProductPage({ params: { productId } }: ProductPage
 			<div className="container mx-auto">
 				<ProductDetails product={productData} />
 				<ProductListRelated />
+				<Suspense>
+					<ProductReview productId={productData.id} productSlug={productId} />
+				</Suspense>
 			</div>
 		</main>
 	);
