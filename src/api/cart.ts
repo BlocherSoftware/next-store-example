@@ -20,6 +20,9 @@ export const getCartByFromCookie = async () => {
 		variables: {
 			id: cartId?.value,
 		},
+		next: {
+			tags: ["cart"],
+		},
 	});
 	return cart;
 };
