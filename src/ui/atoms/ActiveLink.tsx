@@ -21,7 +21,10 @@ export function ActiveLink<T extends string>({
 	children: ReactNode;
 } & Omit<LinkProps<T>, "href">) {
 	const path = usePathname();
-	const isActive = exact ? path === href : path.startsWith(href as string);
+	const hrefWithoutSearchParams = href.toString().split("?")[0];
+	const isActive = exact
+		? path === hrefWithoutSearchParams
+		: path.startsWith(hrefWithoutSearchParams);
 
 	return (
 		<Link

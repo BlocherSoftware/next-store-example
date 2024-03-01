@@ -1,5 +1,5 @@
-query ProductList($take: Int!, $skip: Int) {
-	products(take: $take, skip: $skip) {
+query ProductList($take: Int!, $skip: Int, $orderBy: ProductSortBy, $order: SortDirection) {
+	products(take: $take, skip: $skip, orderBy: $orderBy, order: $order) {
 		meta {
 			count
 			total

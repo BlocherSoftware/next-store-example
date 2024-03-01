@@ -1,4 +1,7 @@
+import { cookies } from "next/headers";
+import { cartFindOrCreate, addToCart } from "@/api/cart";
 import { type ProductDetailsFragment } from "@/gql/graphql";
+import { ButtonAddToCart } from "@/ui/atoms/ButtonAddToCart";
 import { priceFormatter } from "@/utils/utils";
 
 type ProductDetailsDescriptionProps = {
@@ -6,8 +9,30 @@ type ProductDetailsDescriptionProps = {
 };
 
 export const ProductDetailsDescription = ({
-	product: { name, price, categories, description },
+	product: { name, price, categories, description, id },
 }: ProductDetailsDescriptionProps) => {
+	const addProductToCartAction = async () => {
+		"use server";
+		const cart = await cartFindOrCreate({
+			items: [
+				{
+					productId: id,
+					quantity: 1,
+				},
+			],
+		});
+		cookies().set("cartId", cart.id, {
+			httpOnly: true,
+			sameSite: "lax",
+		});
+		await addToCart(cart.id, {
+			item: {
+				productId: id,
+				quantity: 1,
+			},
+		});
+	};
+
 	return (
 		<div>
 			<h1 className="mb-2 text-5xl">{name}</h1>
@@ -16,6 +41,9 @@ export const ProductDetailsDescription = ({
 			</p>
 			<p className="mb-3 text-2xl">{priceFormatter(price)}</p>
 			<p className="mb-3">{description}</p>
+			<form action={addProductToCartAction}>
+				<ButtonAddToCart />
+			</form>
 		</div>
 	);
 };
