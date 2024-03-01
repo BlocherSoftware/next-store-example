@@ -11,6 +11,9 @@ export const changeItemQuantityAction = async (itemId: string, quantity: number)
 	if (!cartId) {
 		throw new Error("Failed to find or create cart");
 	}
+	if (quantity < 1) {
+		throw new Error("Quantity must be greater than 0");
+	}
 	await changeItemQuantity(cartId.value, itemId, quantity);
 	revalidateTag("cart");
 };
