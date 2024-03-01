@@ -35,7 +35,9 @@ export default async function CartPage() {
 									/>
 								</td>
 								<td>{item.product.name}</td>
-								<ProductQuantity itemId={item.product.id} quantity={item.quantity} />
+								<td>
+									<ProductQuantity itemId={item.product.id} quantity={item.quantity} />
+								</td>
 								<td>{item.product.price}</td>
 								<td>
 									<RemoveProductFromCart productId={item.product.id} />
