@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
-import { cartFindOrCreate, addToCart } from "@/api/cart";
+import { revalidateTag } from "next/cache";
+import { cartFindOrCreate, addToCart, getCartByFromCookie } from "@/api/cart";
 import { type ProductDetailsFragment } from "@/gql/graphql";
 import { ButtonAddToCart } from "@/ui/atoms/ButtonAddToCart";
 import { priceFormatter } from "@/utils/utils";
@@ -13,24 +14,29 @@ export const ProductDetailsDescription = ({
 }: ProductDetailsDescriptionProps) => {
 	const addProductToCartAction = async () => {
 		"use server";
-		const cart = await cartFindOrCreate({
-			items: [
-				{
+		const cart = await getCartByFromCookie();
+
+		if (cart) {
+			await addToCart(cart.id, {
+				item: {
 					productId: id,
 					quantity: 1,
 				},
-			],
-		});
-		cookies().set("cartId", cart.id, {
-			httpOnly: true,
-			sameSite: "lax",
-		});
-		await addToCart(cart.id, {
-			item: {
-				productId: id,
-				quantity: 1,
-			},
-		});
+			});
+		} else {
+			const newCart = await cartFindOrCreate({
+				items: [
+					{
+						productId: id,
+					},
+				],
+			});
+			cookies().set("cartId", newCart.id, {
+				httpOnly: true,
+				sameSite: "lax",
+			});
+		}
+		revalidateTag("cart");
 	};
 
 	return (
