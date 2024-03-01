@@ -26,7 +26,7 @@ export const handleFormReviewAction = async (formData: FormData, productId: stri
 		author: String(formData.get("name")),
 		description: String(formData.get("content")),
 		rating: Number(formData.get("rating")),
-		title: String(formData.get("title")),
+		title: String(formData.get("headline")),
 		email: String(formData.get("email")),
 		productId,
 	};

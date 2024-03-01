@@ -19,6 +19,7 @@ export const ReviewForm = ({
 			}}
 			className="w-4/12 max-w-sm"
 			ref={ref}
+			data-testid="add-review-form"
 		>
 			{children}
 		</form>
