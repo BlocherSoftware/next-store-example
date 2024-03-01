@@ -44,7 +44,7 @@ export const HeaderNavigation = async () => {
 						</li>
 					))}
 				</ul>
-				<Cart productCount={0} />
+				<Cart />
 			</div>
 		</nav>
 	);
