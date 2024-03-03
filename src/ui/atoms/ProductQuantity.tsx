@@ -24,7 +24,9 @@ export function ProductQuantity({ itemId, quantity }: { itemId: string; quantity
 			>
 				-
 			</button>
-			<span className="w-8 text-center">{optimisticQuantity}</span>
+			<span className="w-8 text-center" data-testid="quantity">
+				{optimisticQuantity}
+			</span>
 			<button
 				data-testid="increment"
 				className="h-6 w-6 border"
