@@ -36,6 +36,7 @@ export const ProductDetailsDescription = ({
 				sameSite: "lax",
 			});
 		}
+
 		revalidateTag("cart");
 	};
 
