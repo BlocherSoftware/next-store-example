@@ -7,7 +7,7 @@ type ProductListItemProps = {
 };
 
 export const ProductListItem = ({
-	product: { name, price, categories, images, slug },
+	product: { name, price, categories, images, slug, rating },
 }: ProductListItemProps) => {
 	return (
 		<li className="transition-shadow hover:shadow-lg">
@@ -16,7 +16,13 @@ export const ProductListItem = ({
 					<ProductListItemImage src={images[0].url} alt={images[0].alt || name} slug={slug} />
 				)}
 
-				<ProductListItemDescription slug={slug} name={name} category={categories} price={price} />
+				<ProductListItemDescription
+					slug={slug}
+					name={name}
+					category={categories}
+					price={price}
+					rating={rating}
+				/>
 			</article>
 		</li>
 	);

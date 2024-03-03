@@ -9,4 +9,5 @@ fragment ProductListItem on Product {
 	categories {
 		name
 	}
+	rating
 }

@@ -15,7 +15,6 @@ export default async function OpenGraphImage({
 }): Promise<ImageResponse> {
 	const productData = await getProductBySlug(productId);
 
-	console.log(productData);
 	if (!productData) return new ImageResponse(<div>Product not found</div>);
 
 	return new ImageResponse(

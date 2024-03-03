@@ -47,6 +47,10 @@ export const ProductListSort = () => {
 						Price (Low to High)
 					</option>
 					<option value="PRICE/DESC">Price (High to Low)</option>
+					<option value="RATING/ASC" data-testid="sort-by-rating">
+						Rating (Low to High)
+					</option>
+					<option value="RATING/DESC">Rating (High to Low)</option>
 				</select>
 			</div>
 		</div>
