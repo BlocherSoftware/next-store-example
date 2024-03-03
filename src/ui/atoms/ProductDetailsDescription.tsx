@@ -15,7 +15,6 @@ export const ProductDetailsDescription = ({
 	const addProductToCartAction = async () => {
 		"use server";
 		const cart = await getCartByFromCookie();
-
 		if (cart) {
 			await addToCart(cart.id, {
 				item: {
@@ -36,6 +35,7 @@ export const ProductDetailsDescription = ({
 				sameSite: "lax",
 			});
 		}
+
 		revalidateTag("cart");
 	};
 
