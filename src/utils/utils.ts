@@ -16,6 +16,8 @@ export const getSortFromParams = (sortBy: string) => {
 			return "PRICE" as ProductSortBy;
 		case "NAME":
 			return "NAME" as ProductSortBy;
+		case "RATING":
+			return "RATING" as ProductSortBy;
 		default:
 			return "DEFAULT" as ProductSortBy;
 	}
