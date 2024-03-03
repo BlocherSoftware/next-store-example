@@ -28,7 +28,7 @@ export const ProductListItemDescription = ({
 			</Link>
 
 			<p className="mb-2 text-sm text-slate-400">Category: {category[0].name}</p>
-			<StarRating rating={rating ? Math.round(rating) : 0} />
+			<StarRating rating={rating ? rating : 0} />
 			<p className="text-xl" data-testid="product-price">
 				{priceFormatter(price)}
 			</p>

@@ -5,9 +5,7 @@ const stars = [5, 4, 3, 2, 1];
 export const StarRating = ({ rating = 0 }: { rating?: number }) => {
 	return (
 		<div className="stars-rating flex flex-row-reverse justify-end">
-			<span className="hidden" data-testid="product-rating ">
-				{rating}
-			</span>
+			<span data-testid="product-rating ">{rating.toFixed(1)}</span>
 			{stars.map((star) => (
 				<Star
 					width={24}
