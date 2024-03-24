@@ -3,6 +3,7 @@ import NextImage from "next/image";
 import { getCartByFromCookie } from "@/api/cart";
 import { ProductQuantity } from "@/ui/atoms/ProductQuantity";
 import { RemoveProductFromCart } from "@/ui/atoms/RemoveProductFromCart";
+import { handlePaymentAction } from "@/utils/serverActions";
 
 export default async function CartPage() {
 	const cart = await getCartByFromCookie();
@@ -46,6 +47,11 @@ export default async function CartPage() {
 						))}
 					</tbody>
 				</table>
+				<form action={handlePaymentAction}>
+					<button type="submit" className="mt-5 w-full rounded-md bg-blue-500 p-3 text-white">
+						Checkout
+					</button>
+				</form>
 			</div>
 		</main>
 	);
