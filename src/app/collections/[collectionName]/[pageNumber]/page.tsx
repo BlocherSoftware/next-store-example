@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { ProductList } from "@/ui/organisms/ProductList";
-import { pageNumberToPageNumberArray } from "@/utils/utils";
 import { getCollectionsListBySlug } from "@/api/collections";
 import { Pagination } from "@/ui/molecules/Pagination";
 
@@ -22,12 +21,6 @@ export const generateMetadata = async ({
 			description: collections.description,
 		},
 	};
-};
-
-export const generateStaticParams = async () => {
-	const pages = 1;
-	const pagesNumberArray = pageNumberToPageNumberArray(pages);
-	return pagesNumberArray.map((page) => ({ pageNumber: page.toString() }));
 };
 
 export default async function CollectionPaginationPage({
