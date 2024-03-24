@@ -5,6 +5,7 @@ query CartGetById($id: ID!) {
 			product {
 				id
 				name
+				description
 				images {
 					url
 					alt
