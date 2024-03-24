@@ -10,7 +10,6 @@
 		"codegen": "graphql-codegen --config .graphqlrc.ts"
 	},
 	"dependencies": {
-		"@clerk/nextjs": "^4.29.9",
 		"@graphql-typed-document-node/core": "^3.2.0",
 		"@next/env": "^14.1.0",
 		"clsx": "^2.1.0",
