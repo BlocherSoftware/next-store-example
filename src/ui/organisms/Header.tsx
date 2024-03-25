@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { Suspense } from "react";
+import { SignedIn, UserButton, SignedOut, SignInButton } from "@clerk/nextjs";
+import { User } from "lucide-react";
 import { HeaderNavigation } from "@/ui/molecules/HeaderNavigation";
 import { Serachbar } from "@/ui/atoms/Searchbar";
 import { Cart } from "@/ui/atoms/Cart";
@@ -20,7 +22,14 @@ export const Header = () => {
 						<Serachbar />
 					</Suspense>
 					<Cart />
-
+					<SignedIn>
+						<UserButton userProfileMode="navigation" />
+					</SignedIn>
+					<SignedOut>
+						<SignInButton>
+							<User className="cursor-pointer" />
+						</SignInButton>
+					</SignedOut>
 				</div>
 
 			</div>
