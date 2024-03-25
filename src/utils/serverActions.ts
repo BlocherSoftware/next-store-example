@@ -1,10 +1,15 @@
 "use server";
-
+import { currentUser } from "@clerk/nextjs";
 import { cookies } from "next/headers";
 import { revalidateTag } from "next/cache";
 import Stripe from "stripe";
 import { redirect } from "next/navigation";
-import { changeItemQuantity, getCartByFromCookie, removeItemFromCart } from "@/api/cart";
+import {
+	cartComplete,
+	changeItemQuantity,
+	getCartByFromCookie,
+	removeItemFromCart,
+} from "@/api/cart";
 import { createReview } from "@/api/products";
 
 export const changeItemQuantityAction = async (itemId: string, quantity: number) => {
@@ -55,6 +60,7 @@ export const handlePaymentAction = async () => {
 	if (!cart) {
 		throw new Error("Failed to find cart");
 	}
+	const user = await currentUser();
 
 	const session = await stripe.checkout.sessions.create({
 		metadata: {
@@ -75,7 +81,14 @@ export const handlePaymentAction = async () => {
 		mode: "payment",
 		success_url: `http://localhost:3000/cart/success?session_id={CHECKOUT_SESSION_ID}`,
 		cancel_url: `http://localhost:3000/cart/canceled`,
+		customer_email: user?.emailAddresses[0].emailAddress || "",
 	});
+
+	const cartId = cart.id;
+	const userEmail = session.customer_email;
+	if (cartId && userEmail) {
+		await cartComplete(cartId, userEmail);
+	}
 	if (session.url) {
 		cookies().set("cartId", "");
 		redirect(session.url);

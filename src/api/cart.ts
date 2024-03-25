@@ -8,6 +8,7 @@ import {
 	type MutationCartFindOrCreateInput,
 	CartChangeItemQuantityDocument,
 	CartRemoveItemFromCartDocument,
+	CartCompleteDocument,
 } from "@/gql/graphql";
 
 export const getCartByFromCookie = async () => {
@@ -94,6 +95,16 @@ export const removeItemFromCart = async (productId: string) => {
 		},
 		next: {
 			tags: ["cart"],
+		},
+	});
+};
+
+export const cartComplete = async (cartId: string, userEmail: string) => {
+	await ExecuteGraphQL({
+		query: CartCompleteDocument,
+		variables: {
+			cartId,
+			userEmail,
 		},
 	});
 };

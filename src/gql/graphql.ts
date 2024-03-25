@@ -93,6 +93,7 @@ export type MutationCartChangeItemQuantityArgs = {
 
 export type MutationCartCompleteArgs = {
   cartId: Scalars['ID']['input'];
+  userEmail: Scalars['String']['input'];
 };
 
 
@@ -290,6 +291,14 @@ export type CartChangeItemQuantityMutationVariables = Exact<{
 
 export type CartChangeItemQuantityMutation = { cartChangeItemQuantity: { id: string } };
 
+export type CartCompleteMutationVariables = Exact<{
+  cartId: Scalars['ID']['input'];
+  userEmail: Scalars['String']['input'];
+}>;
+
+
+export type CartCompleteMutation = { cartComplete: { status: OrderStatus } };
+
 export type CartFindOrCreateMutationVariables = Exact<{
   id?: InputMaybe<Scalars['ID']['input']>;
   input: MutationCartFindOrCreateInput;
@@ -336,6 +345,20 @@ export type CollectionBySlugQueryVariables = Exact<{
 
 
 export type CollectionBySlugQuery = { collection?: { name: string, description: string, products: Array<{ slug: string, name: string, price: number, rating?: number | null, images: Array<{ alt: string, url: string }>, categories: Array<{ name: string }> }> } | null };
+
+export type OrderByIdQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type OrderByIdQuery = { order?: { lines: unknown } | null };
+
+export type OrdersByEmailQueryVariables = Exact<{
+  email: Scalars['String']['input'];
+}>;
+
+
+export type OrdersByEmailQuery = { orders: { data: Array<{ id: string, status: OrderStatus, createdAt: unknown }> } };
 
 export type ProductBySlugQueryVariables = Exact<{
   slug: Scalars['String']['input'];
@@ -462,6 +485,13 @@ export const CartChangeItemQuantityDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<CartChangeItemQuantityMutation, CartChangeItemQuantityMutationVariables>;
+export const CartCompleteDocument = new TypedDocumentString(`
+    mutation CartComplete($cartId: ID!, $userEmail: String!) {
+  cartComplete(cartId: $cartId, userEmail: $userEmail) {
+    status
+  }
+}
+    `) as unknown as TypedDocumentString<CartCompleteMutation, CartCompleteMutationVariables>;
 export const CartFindOrCreateDocument = new TypedDocumentString(`
     mutation CartFindOrCreate($id: ID, $input: MutationCartFindOrCreateInput!) {
   cartFindOrCreate(id: $id, input: $input) {
@@ -564,6 +594,24 @@ export const CollectionBySlugDocument = new TypedDocumentString(`
   }
   rating
 }`) as unknown as TypedDocumentString<CollectionBySlugQuery, CollectionBySlugQueryVariables>;
+export const OrderByIdDocument = new TypedDocumentString(`
+    query OrderById($id: ID!) {
+  order(id: $id) {
+    lines
+  }
+}
+    `) as unknown as TypedDocumentString<OrderByIdQuery, OrderByIdQueryVariables>;
+export const OrdersByEmailDocument = new TypedDocumentString(`
+    query OrdersByEmail($email: String!) {
+  orders(email: $email) {
+    data {
+      id
+      status
+      createdAt
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<OrdersByEmailQuery, OrdersByEmailQueryVariables>;
 export const ProductBySlugDocument = new TypedDocumentString(`
     query ProductBySlug($slug: String!) {
   product(slug: $slug) {

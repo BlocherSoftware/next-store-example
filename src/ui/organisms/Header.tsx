@@ -1,10 +1,11 @@
 import Image from "next/image";
 import { Suspense } from "react";
-import { SignedIn, UserButton, SignedOut, SignInButton } from "@clerk/nextjs";
+import { SignedOut, SignInButton } from "@clerk/nextjs";
 import { User } from "lucide-react";
 import { HeaderNavigation } from "@/ui/molecules/HeaderNavigation";
 import { Serachbar } from "@/ui/atoms/Searchbar";
 import { Cart } from "@/ui/atoms/Cart";
+import { ButtonUser } from "@/ui/atoms/UserButton";
 
 export const Header = () => {
 	return (
@@ -22,9 +23,7 @@ export const Header = () => {
 						<Serachbar />
 					</Suspense>
 					<Cart />
-					<SignedIn>
-						<UserButton userProfileMode="navigation" />
-					</SignedIn>
+					<ButtonUser />
 					<SignedOut>
 						<SignInButton>
 							<User className="cursor-pointer" />
